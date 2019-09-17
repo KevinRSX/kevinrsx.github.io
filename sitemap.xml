@@ -3,26 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>kevinrsx.github.io/</loc>
-    <lastmod>2019-09-17T23:32:21+08:00</lastmod>
+    <loc>https://example.com/categories/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>kevinrsx.github.io/posts/</loc>
-    <lastmod>2019-09-17T23:32:21+08:00</lastmod>
+    <loc>https://example.com/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>kevinrsx.github.io/posts/testing/</loc>
-    <lastmod>2019-09-17T23:32:21+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>kevinrsx.github.io/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>kevinrsx.github.io/tags/</loc>
+    <loc>https://example.com/tags/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
 </urlset>
