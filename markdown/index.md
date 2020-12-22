@@ -1,16 +1,16 @@
 ---
-title: Blog | Kevin Xue
+title: Blog | Emulbasaka
 ---
 
 
 
-# Blog | Kevin Xue
+# Blog | Emulbasaka
 
 [All articles](all.html)
 
 [A Collection of Useful Sites](collection.html)
 
-Codes and Commands (*coming...*)
+[Codes and Commands](https://github.com/KevinRSX/configuration-instruction)
 
 ## C
 
@@ -20,11 +20,10 @@ Codes and Commands (*coming...*)
 
 ## Quic
 
-- [Quic on Dash](quic-on-dash.html)
+- [Quic on Dash](/quic_on_dash.html)
 
 
 
 ## WebRTC
 
-*Coming...*
-
+- [WebRTC Receiving Stack](/webrtc_receiving_stack.html)

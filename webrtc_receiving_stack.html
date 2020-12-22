@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WebRTC Receiving Stack</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.4/css/uikit.gradient.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/diversen/pandoc-uikit/master/style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <!-- <script src="uikit.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/uikit.js"></script>
+        <!-- <script src="scripts.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/scripts.js"></script>
+        <!-- <script src="jquery.sticky-kit.js "></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/jquery.sticky-kit.js"></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                        <title>WebRTC Receiving Stack</title>
+        <style type="text/css">code{white-space: pre;}</style>
+                                                        </head>
+
+    <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/KevinRSX">GitHub</a>
+      </li>
+      </ul>
+      </div>
+      </nav>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large">WebRTC Receiving Stack</h1>
+                                                        </div>
+            </div>
+            
+            <div class="uk-grid" data-uk-grid-margin >
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul>
+                                                        <li><a href="#webrtc-receiving-stack">WebRTC Receiving Stack</a>
+                                                        <ul>
+                                                        <li><a href="#decoding">Decoding</a></li>
+                                                        <li><a href="#rendering">Rendering</a></li>
+                                                        <li><a href="#objective-c-application">Objective-C Application</a></li>
+                                                        </ul></li>
+                                                        </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<h1 id="webrtc-receiving-stack">WebRTC Receiving Stack</h1>
+<h2 id="decoding">Decoding</h2>
+<p>Locations of classes:</p>
+<pre><code>VideoReceiveStream2: video/video_receive_stream2.cc
+VideoReceiver2: modules/video_coding/video_receiver2.cc
+VCMGenericDecoder: modules/video_coding/generic_decoder.cc</code></pre>
+<p>Function calls:</p>
+<pre><code>VideoReceiveStream2::StartNextDecode() -&gt;
+VideoReceiveStream2::HandleEncodedFrame(std::unique_ptr&lt;EncodedFrame&gt; frame) -&gt;
+VideoReceiver2::Decode(const VCMEncodedFrame* frame) -&gt;
+VCMGenericDecoder::Decode(const VCMEncodedFrame&amp; frame, Timestamp now)</code></pre>
+<p>Notes:</p>
+<ul>
+<li><code>frame_buffer_</code> is in <code>VideoReceiveStream2</code>.</li>
+</ul>
+<h2 id="rendering">Rendering</h2>
+<p>Locations of classes:</p>
+<pre><code>VCMDecodedFrameCallback: modules/video_coding/generic_decoder.cc
+VideoStreamDecoder: video/video_stream_decoder2.cc
+IncomeVideoStream: common_video/income_video_stream.cc
+VideoRenderFrames: common_video/video_render_frames.cc
+WebRtcVideoChannel: media/engine/webrtc_video_engine.cc
+VideoBroadcaster: media/base/video_broadcaster.cc
+VideoRendererAdapter: sdk/objc/api/RTCVideoRendererAdapter.mm</code></pre>
+<p>Function calls:</p>
+<pre><code>VCMDecodedFrameCallback::Decoded(VideoFrame&amp; decodedImage)
+VCMDecodedFrameCallback::Decoded(VideoFrame&amp; decodedImage, int64_t decode_time_ms) -&gt; 
+VCMDecodedFrameCallback::Decoded(VideoFrame&amp; decodedImage, absl::optional&lt;int32_t&gt; decode_time_ms, absl::optional&lt;uint8_t&gt; qp) -&gt; 
+VideoStreamDecoder::FrameToRender(VideoFrame&amp; video_frame, absl::optional&lt;uint8_t&gt; qp, int32_t decode_time_ms, VideoContentType content_type) -&gt;
+IncomingVideoStream::OnFrame(const VideoFrame&amp; video_frame) -&gt;
+IncomingVideoStream::Dequeue() -&gt;
+[VideoReceiveStream2::OnFrame(const VideoFrame&amp; video_frame), 
+absl::optional&lt;VideoFrame&gt; VideoRenderFrames::FrameToRender()]
+
+VideoReceiveStream2::OnFrame(const VideoFrame&amp; video_frame) -&gt;
+WebRtcVideoChannel::WebRtcVideoReceiveStream::OnFrame(const webrtc::VideoFrame&amp; frame) -&gt;
+VideoBroadcaster::OnFrame(const webrtc::VideoFrame&amp; frame) -&gt;
+(Mac and IOS) VideoRendererAdapter::OnFrame(const webrtc::VideoFrame&amp; nativeVideoFrame) -&gt;
+Platform-specific implementations</code></pre>
+<p>Note:</p>
+<ul>
+<li><code>callback_</code> in <code>IncomingVideoStream</code> is a <code>rtc::VideoSinkInterface&lt;VideoFrame&gt;</code>, which is inherited by <code>VideoReceiveStream2</code></li>
+<li><code>VideoBroadcaster</code> implements both a source (producer of video &amp; audio track) and sink (consumer of video &amp; audio track), where <code>OnFrame()</code> is a method of the sink. Rendering methods are called before <code>VideoBroadcaster</code></li>
+</ul>
+<h2 id="objective-c-application">Objective-C Application</h2>
+<ul>
+<li>Codes are in <code>sdk/objc/</code></li>
+<li><code>.mm</code> are Objective-C++ while <code>.m</code> are Objective-C</li>
+</ul>
+                </div>
+            </div>
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+    </body>
+</html>
