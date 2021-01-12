@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>OS Concept Essentials 01 - Introduction</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.4/css/uikit.gradient.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/diversen/pandoc-uikit/master/style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <!-- <script src="uikit.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/uikit.js"></script>
+        <!-- <script src="scripts.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/scripts.js"></script>
+        <!-- <script src="jquery.sticky-kit.js "></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/jquery.sticky-kit.js"></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                        <title>OS Concept Essentials 01 - Introduction</title>
+        <style type="text/css">code{white-space: pre;}</style>
+                                                        </head>
+
+    <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/KevinRSX">GitHub</a>
+      </li>
+      </ul>
+      </div>
+      </nav>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large">OS Concept Essentials 01 - Introduction</h1>
+                                                        </div>
+            </div>
+            
+            <div class="uk-grid" data-uk-grid-margin >
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul>
+                                                        <li><a href="#os-concepts-essentials-01---introduction">OS Concepts Essentials 01 - Introduction</a>
+                                                        <ul>
+                                                        <li><a href="#what-operating-systems-do">What Operating Systems Do?</a></li>
+                                                        <li><a href="#computer-system-organization">Computer-System Organization</a></li>
+                                                        <li><a href="#computer-system-architecture">Computer-System Architecture</a></li>
+                                                        <li><a href="#operating-system-structure">Operating-System Structure</a></li>
+                                                        <li><a href="#operating-system-operations">Operating-System Operations</a></li>
+                                                        <li><a href="#process-management-memory-management-storage-management">Process Management, Memory Management, Storage Management</a></li>
+                                                        <li><a href="#protection-and-security">Protection and Security</a></li>
+                                                        <li><a href="#kernel-data-structures">Kernel Data Structures</a></li>
+                                                        <li><a href="#computing-environments">Computing Environments</a></li>
+                                                        <li><a href="#open-source-operating-systems">Open-Source Operating Systems</a></li>
+                                                        </ul></li>
+                                                        </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<h1 id="os-concepts-essentials-01---introduction">OS Concepts Essentials 01 - Introduction</h1>
+<p><em>Date of creation: 2021-1-12</em></p>
+<p>This is a study guide for an OS textbook:</p>
+<p><em><a href="http://os-book.com/">Operating System Concepts Essentials <strong>(2nd Edition)</strong></a></em>, Avi Silberschatz, Peter Galvin, and Greg Gagne, John Wiley and Sons, New York, NY, 2013, pp. 3-54.</p>
+<h2 id="what-operating-systems-do">What Operating Systems Do?</h2>
+<p>Computer System: hardware, OS, application programs, users</p>
+<ul>
+<li>Users view: ease of use</li>
+<li>System view: resource allocation/utilization</li>
+</ul>
+<p>No clear definition of Operating Systems. Sometimes OS=kernel.</p>
+<ul>
+<li>Kernel: the one program running at all times on the computer.</li>
+</ul>
+<h2 id="computer-system-organization">Computer-System Organization</h2>
+<ul>
+<li>Boot: bootstrap programs
+<ul>
+<li>stored in ROM</li>
+<li>initialize CPU registers, device controllers, memory, etc.</li>
+<li>load OS kernel to memory</li>
+<li>then wait for events</li>
+</ul></li>
+<li>Events: signaled by an interrupt
+<ul>
+<li>hardware: sending signal to CPU</li>
+<li>software: system call</li>
+<li>CPU transfer execution to the service routing upon interrupt</li>
+</ul></li>
+<li>Storage
+<ul>
+<li>volatile/non-volatile</li>
+<li>secondary</li>
+<li>principle: use only as much expensive memory as necessary while providing as much inexpensive, nonvolatile memory as possible (11)</li>
+</ul></li>
+<li>I/O
+<ul>
+<li>device - device controller - device driver - OS - application</li>
+<li>device controller: moves data between devices and its local storage</li>
+<li>device driver: understands the device controller and provides <strong>OS</strong> with a uniform interface <strong>to the device</strong></li>
+<li>device controller notifies device driver via interrupt</li>
+</ul></li>
+</ul>
+<h2 id="computer-system-architecture">Computer-System Architecture</h2>
+<ul>
+<li>Single-processor systems: general + special</li>
+<li>Multicore/Multiprocessor systems
+<ul>
+<li>asymmetric multiprocessing/symmetric multiprocessing</li>
+<li>shared memory, separate registers and cache</li>
+<li>non-uniform memory access (NUMA)</li>
+</ul></li>
+<li>Clustered systems</li>
+</ul>
+<h2 id="operating-system-structure">Operating-System Structure</h2>
+<p>Important aspect of OS: multiprogramming. Keep CPU busy.</p>
+<ul>
+<li>Time sharing: CPU switches so frequently that users can interact with each program while it is running, requiring
+<ul>
+<li>interactive: user is given impression that the entire system is dedicated to his use (20)</li>
+<li>several jobs kept simultaneously in memory: job scheduling and virtual memory</li>
+</ul></li>
+</ul>
+<h2 id="operating-system-operations">Operating-System Operations</h2>
+<p>Goal: to prevent one erraneous program to corrupt the whole system</p>
+<ul>
+<li>Dual/multimode
+<ul>
+<li>user/kernel: controlled by mode bit</li>
+<li>privileged instructions are only allowed to be operated in kernel mode</li>
+<li>system calls:
+<ul>
+<li>users use system calls to request action by the operating system</li>
+<li>take form of trap</li>
+<li>treated by hardware as a software interrupt</li>
+</ul></li>
+</ul></li>
+<li>Timer: stop programs from running too long</li>
+</ul>
+<h2 id="process-management-memory-management-storage-management">Process Management, Memory Management, Storage Management</h2>
+<p>Omitted</p>
+<h2 id="protection-and-security">Protection and Security</h2>
+<ul>
+<li><p>Protection: mechanism for controlling the access of processes of users to the resources defined by a computer system.</p></li>
+<li><p>Security: defend a system from internal/external attacks.</p></li>
+<li><p>User identifiers, group identifiers</p></li>
+</ul>
+<h2 id="kernel-data-structures">Kernel Data Structures</h2>
+<p>List, stacks, queues, trees, hash functions, hash maps, bitmaps</p>
+<h2 id="computing-environments">Computing Environments</h2>
+<ul>
+<li>Traditional computing</li>
+<li>Mobile computing</li>
+<li>Distributed systems</li>
+<li>Client-server computing</li>
+<li>Peer-to-peer computing</li>
+<li>Virtualization</li>
+<li>Cloud computing</li>
+<li>Real-Time embedded systems</li>
+</ul>
+<h2 id="open-source-operating-systems">Open-Source Operating Systems</h2>
+<p>Linux is open-source, Microsoft is closed-source, Mac OS X/iOS are hybrid.</p>
+<ul>
+<li>Linux</li>
+<li>BSD Linux</li>
+<li>Solaris</li>
+</ul>
+                </div>
+            </div>
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+    </body>
+</html>

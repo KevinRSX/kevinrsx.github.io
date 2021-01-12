@@ -12,9 +12,9 @@ title: Blog | Emulbasaka
 
 [Codes and Commands](https://github.com/KevinRSX/configuration-instruction)
 
-## C
+## OS
 
-*Coming...*
+- [OS Concept Essential 01 - Introduction](/os/osce-01-introduction.html)
 
 
 
