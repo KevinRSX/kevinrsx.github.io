@@ -16,6 +16,8 @@ title: Blog | Emulbasaka
 
 - [OS Concept Essential 01 - Introduction](/os/osce-01-introduction.html)
 
+- [OS Concept Essential 02 - Operating-System Structures](/os/osce-01-operating-system-structures.html)
+
 
 
 ## Quic
