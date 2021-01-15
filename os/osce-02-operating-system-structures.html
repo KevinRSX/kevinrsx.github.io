@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>OS Concept Essentials 02 - Operating Systems Structures</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.4/css/uikit.gradient.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/diversen/pandoc-uikit/master/style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <!-- <script src="uikit.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/uikit.js"></script>
+        <!-- <script src="scripts.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/scripts.js"></script>
+        <!-- <script src="jquery.sticky-kit.js "></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/jquery.sticky-kit.js"></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                        <title>OS Concept Essentials 02 - Operating Systems Structures</title>
+        <style type="text/css">code{white-space: pre;}</style>
+                                                        </head>
+
+    <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/KevinRSX">GitHub</a>
+      </li>
+      </ul>
+      </div>
+      </nav>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large">OS Concept Essentials 02 - Operating Systems Structures</h1>
+                                                        </div>
+            </div>
+
+            <div class="uk-grid" data-uk-grid-margin >
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul>
+                                                        <li><a href="#os-concepts-essentials-01---operating-system-structures">OS Concepts Essentials 01 - Operating System Structures</a>
+                                                        <ul>
+                                                        <li><a href="#operating-system-services">Operating System Services</a></li>
+                                                        <li><a href="#user-and-operating-system-interface">User and Operating System Interface</a></li>
+                                                        <li><a href="#system-calls">System Calls</a></li>
+                                                        <li><a href="#types-of-system-calls">Types of System Calls</a></li>
+                                                        <li><a href="#system-programs">System Programs</a></li>
+                                                        <li><a href="#operating-system-design-and-implementation">Operating-System Design and Implementation</a>
+                                                        <ul>
+                                                        <li><a href="#design-goals">Design Goals</a></li>
+                                                        <li><a href="#mechanisms-and-policies">Mechanisms and Policies</a></li>
+                                                        <li><a href="#implementation">Implementation</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#operating-system-structure">Operating-System Structure</a>
+                                                        <ul>
+                                                        <li><a href="#simple-structure">Simple Structure</a></li>
+                                                        <li><a href="#layered-approach">Layered Approach</a></li>
+                                                        <li><a href="#microkernels">Microkernels</a></li>
+                                                        <li><a href="#modules">Modules</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#operating-system-debugging">Operating-System Debugging</a></li>
+                                                        <li><a href="#operating-system-generation">Operating-System Generation</a></li>
+                                                        <li><a href="#system-boot">System Boot</a></li>
+                                                        </ul></li>
+                                                        </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<h1 id="os-concepts-essentials-01---operating-system-structures">OS Concepts Essentials 02 - Operating System Structures</h1>
+<p><em>Date of creation: 2021-1-14</em></p>
+<p>Source:</p>
+<p><em><a href="http://os-book.com/">Operating System Concepts Essentials <strong>(2nd Edition)</strong></a></em>, Avi Silberschatz, Peter Galvin, and Greg Gagne, John Wiley and Sons, New York, NY, 2013, pp. 55-102.</p>
+<h2 id="operating-system-services">Operating System Services</h2>
+<p>User’s perspective:</p>
+<ul>
+<li>User interface
+<ul>
+<li>batch interface</li>
+<li>command line interface</li>
+<li>graphic user interface</li>
+</ul></li>
+<li>Program execution</li>
+<li>I/O operations</li>
+<li>File-system manipulation</li>
+<li>Communication
+<ul>
+<li>message passing</li>
+<li>shared memory</li>
+</ul></li>
+<li>Error detection</li>
+</ul>
+<p>System’s perspective:</p>
+<ul>
+<li>Resource allocation</li>
+<li>Accounting</li>
+<li>Protection and security</li>
+</ul>
+</br>
+<h2 id="user-and-operating-system-interface">User and Operating System Interface</h2>
+<p>Command execution approaches for CLI:</p>
+<ul>
+<li>Command interpreter itself contains the code to execute the command (58)</li>
+<li>Implements most commands through system programs and call them through shells
+<ul>
+<li>commands are used to identify files to be loaded into memory and executed</li>
+</ul></li>
+</ul>
+</br>
+<h2 id="system-calls">System Calls</h2>
+<p>System call: interface to the services made available by an operating system</p>
+<p>Example of read and write (62):</p>
+<ul>
+<li>Heavy use of system calls</li>
+<li>Users only use system call APIs. Programming languages provide system-call interfaces that link to the actual system calls.</li>
+<li>Passing parameters to the operating system:
+<ul>
+<li>registers</li>
+<li>a block in memory whose address is stored in register</li>
+<li>pushed onto the stack and popped by OS</li>
+</ul></li>
+</ul>
+</br>
+<h2 id="types-of-system-calls">Types of System Calls</h2>
+<ul>
+<li>Process control</li>
+<li>File manipulation</li>
+<li>Device manipulation</li>
+<li>Information maintenance</li>
+<li>Communications</li>
+<li>Protection</li>
+</ul>
+</br>
+<h2 id="system-programs">System Programs</h2>
+<p>Divided into:</p>
+<ul>
+<li>File management</li>
+<li>Status information</li>
+<li>File modification</li>
+<li>Programming language support</li>
+<li>Program loading and execution</li>
+<li>Communications</li>
+<li>Background services</li>
+</ul>
+</br>
+<h2 id="operating-system-design-and-implementation">Operating-System Design and Implementation</h2>
+<h3 id="design-goals">Design Goals</h3>
+<p>Basic: Hardware and system type</p>
+<p>Beyond basic: user goals and system goals</p>
+<h3 id="mechanisms-and-policies">Mechanisms and Policies</h3>
+<p>Mechanism: how</p>
+<p>Policy: what</p>
+<ul>
+<li>Generally, mechanism should be insensitive to changes in policy</li>
+<li>Two approaches:
+<ul>
+<li>implement only a basic set of primitive building blocks</li>
+<li>encode policies in the system to enforce a global look and feel</li>
+</ul></li>
+</ul>
+<h3 id="implementation">Implementation</h3>
+<p>Benefit of higher level languages: easy to port</p>
+</br>
+<h2 id="operating-system-structure">Operating-System Structure</h2>
+<h3 id="simple-structure">Simple Structure</h3>
+<p>MS-DOS - No well-defined structures:</p>
+<ul>
+<li>Application programs can access basic I/O routines</li>
+<li>Vulnerable to errant or malicious programs</li>
+</ul>
+<p>UNIX: kernel + system programs</p>
+<ul>
+<li>functionalities are combined</li>
+<li>difficult to debug and maintain</li>
+</ul>
+<p>Pro: efficient, low overhead</p>
+<h3 id="layered-approach">Layered Approach</h3>
+<ul>
+<li>Layer 0: hardware, Layer 1: user interface</li>
+<li>Layer M calls M - 1 and called by M + 1</li>
+<li>Each layer can be implemented only with operations provided by lower-level layers</li>
+<li>Simple to construct and debug</li>
+<li>Difficult to define the various layers</li>
+</ul>
+<h3 id="microkernels">Microkernels</h3>
+<p>Removing all nonessential components from the kernel and implementing them as system and user-level programs (81)</p>
+<ul>
+<li>Main function: provide communication between the client program and the various services that are also running in user space</li>
+<li>Client program and services communicate indirectly by exchanging messages with the microkernel</li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Makes extending the operating system easier</li>
+<li>Resulting operating system is easier to port from one hardware design to another</li>
+<li>Provides more security and liability</li>
+</ul>
+<p>Con:</p>
+<ul>
+<li>Bad performance due to increased system-function overhead</li>
+</ul>
+<h3 id="modules">Modules</h3>
+<p>Dynamically loading kernel modules instead of recompiling the whole kernel</p>
+<ul>
+<li>vs layered system: more flexible (any module can call any other module)</li>
+<li>vs microkernels: more efficient (do not require message exchanging)</li>
+</ul>
+</br>
+<h2 id="operating-system-debugging">Operating-System Debugging</h2>
+<p>Omitted</p>
+</br>
+<h2 id="operating-system-generation">Operating-System Generation</h2>
+<p>Omitted</p>
+</br>
+<h2 id="system-boot">System Boot</h2>
+<p>Bootstrap program/loader locates the kernel and loads it into main memory</p>
+<ul>
+<li>Run diagnostics</li>
+<li>Initialization (registers, device controllers, etc.)</li>
+</ul>
+<p>Firmware = ROM + EPROM, slower than RAM</p>
+<p>Large operating system</p>
+<ul>
+<li>Bootstrap: firmware</li>
+<li>OS: disk</li>
+</ul>
+                </div>
+            </div>
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+    </body>
+</html>
