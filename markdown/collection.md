@@ -4,6 +4,17 @@ title: 'Collection of Useful Sites'
 
 # Collection of Useful Sites
 
+## Kernel Development
+
+- [*Linux Kernel Development*](https://www.doc-developpement-durable.org/file/Projets-informatiques/cours-&-manuels-informatiques/Linux/Linux%20Kernel%20Development,%203rd%20Edition.pdf)
+- [Kernel linked list](https://medium.com/@414apache/kernel-data-structures-linkedlist-b13e4f8de4bf)
+
+- [OS development wiki](https://wiki.osdev.org/Main_Page)
+- [Linux kernel source browser **v5.4**](https://elixir.bootlin.com/linux/v5.4/source)
+- [Linux kernel doc](https://www.kernel.org/doc/html/)
+
+
+
 ## Open courses
 
 - [CMU 15-213](https://www.cs.cmu.edu/~213/)

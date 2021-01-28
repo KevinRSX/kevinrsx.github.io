@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>OS Concept Essentials 03 - Processes</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.4/css/uikit.gradient.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/diversen/pandoc-uikit/master/style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <!-- <script src="uikit.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/uikit.js"></script>
+        <!-- <script src="scripts.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/scripts.js"></script>
+        <!-- <script src="jquery.sticky-kit.js "></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/jquery.sticky-kit.js"></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                        <title>OS Concept Essentials 03 - Processes</title>
+        <style type="text/css">code{white-space: pre;}</style>
+                                                        </head>
+
+    <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/KevinRSX">GitHub</a>
+      </li>
+      </ul>
+      </div>
+      </nav>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large">OS Concept Essentials 03 - Processes</h1>
+                                                        </div>
+            </div>
+            
+            <div class="uk-grid" data-uk-grid-margin >
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul>
+                                                        <li><a href="#os-concepts-essentials-03---processes">OS Concepts Essentials 03 - Processes</a>
+                                                        <ul>
+                                                        <li><a href="#concept">Concept</a></li>
+                                                        <li><a href="#process-scheduling">Process Scheduling</a>
+                                                        <ul>
+                                                        <li><a href="#schedulers">Schedulers</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#operations-on-processes">Operations on Processes</a>
+                                                        <ul>
+                                                        <li><a href="#creation">Creation</a></li>
+                                                        <li><a href="#termination">Termination</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#interprocess-communication">Interprocess Communication</a></li>
+                                                        <li><a href="#communication-in-client-server-systems">Communication in Client-Server Systems</a></li>
+                                                        </ul></li>
+                                                        </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<h1 id="os-concepts-essentials-03---processes">OS Concepts Essentials 03 - Processes</h1>
+<p><em>Date of creation: 2021-1-28</em></p>
+<p>Source:</p>
+<p><em><a href="http://os-book.com/">Operating System Concepts Essentials <strong>(2nd Edition)</strong></a></em>, Avi Silberschatz, Peter Galvin, and Greg Gagne, John Wiley and Sons, New York, NY, 2013, pp. 105-162.</p>
+<h2 id="concept">Concept</h2>
+<p>Process:</p>
+<ul>
+<li>Program code (text section)</li>
+<li>Current activity (program counter)</li>
+<li>Stack, heap</li>
+<li>Data section (for global variables)</li>
+</ul>
+<p>States:</p>
+<ul>
+<li>New</li>
+<li>Running</li>
+<li>Waiting</li>
+<li>Ready</li>
+<li>Terminated</li>
+</ul>
+<p>Stored in OS by Process Contral Block (PCB):</p>
+<ul>
+<li>Process state</li>
+<li>Program counter</li>
+<li>CPU registers</li>
+<li>CPU-scheduling information</li>
+<li>Memory management information</li>
+<li>Accounting information</li>
+<li>I/O status information</li>
+</ul>
+<p>Threads: one process can have multiple threads</p>
+<h2 id="process-scheduling">Process Scheduling</h2>
+<p>Different queues:</p>
+<ul>
+<li>Job queue: all processes in the system (including in disks)</li>
+<li>Ready queue: processes in main memory and ready to execute</li>
+<li>Device queue: waiting for a particular I/O device</li>
+</ul>
+<h3 id="schedulers">Schedulers</h3>
+<p>Long-term scheduler: select processes from the process pool and loads them in memory for execution</p>
+<ul>
+<li>Controls the degree of multiprogramming</li>
+<li>Select a mix of I/O-bound and CPU-bound processes</li>
+</ul>
+<p>Short-term scheduler: selects from among the processes that are ready to execute and allocates the CPU to one of them</p>
+<ul>
+<li>Must be fast to reduce overhead</li>
+</ul>
+<p>Medium-term scheduler: swapping</p>
+<p>Context switch</p>
+<ul>
+<li>Context: represented in PCB</li>
+<li>State save the current state of the CPU and then a state restore to resume operations</li>
+</ul>
+<h2 id="operations-on-processes">Operations on Processes</h2>
+<h3 id="creation">Creation</h3>
+<ul>
+<li>Identified by pid</li>
+<li>Each process can create process: process tree</li>
+<li><code>init</code>: root process for all user processes <code>pid=1</code></li>
+<li>Linux: <code>ps -el</code></li>
+</ul>
+<p>Upon creation, two possibilities for execution:</p>
+<ol type="1">
+<li>Parent continues to execute concurrently with its children (117)</li>
+<li>Parent waits until some or all of its children have terminated</li>
+</ol>
+<p>Two possibilities for address space</p>
+<ol type="1">
+<li>Child process is a duplicate of the parent process (has the same program and data as the parent)</li>
+<li>Child process has a new program loaded into it (Linux <code>exec()</code>)</li>
+</ol>
+<h3 id="termination">Termination</h3>
+<ul>
+<li>Child asks OS to delete it by using <code>exit()</code> system call</li>
+<li>Returns a value to its parent by <code>wait()</code></li>
+<li>Cascading termination: happens in systems that disallow children to exist without parents. Terminating parents result in termination of all its descendants</li>
+<li>Zombie: terminated process whose parent has not called <code>wait()</code>:
+<ul>
+<li>resources deallocated upon termination, but entry in process table remains</li>
+</ul></li>
+<li>Orphan: process whose parent terminates without calling <code>wait()</code>:
+<ul>
+<li>Linux: assign <code>init</code> as its parent</li>
+<li><code>init</code> periodically calls <code>wait()</code></li>
+</ul></li>
+</ul>
+<h2 id="interprocess-communication">Interprocess Communication</h2>
+<ul>
+<li>Shared-memory</li>
+<li>Message-passing</li>
+</ul>
+<h2 id="communication-in-client-server-systems">Communication in Client-Server Systems</h2>
+<ul>
+<li>Sockets (<a href="http://www.cs.columbia.edu/~jae/3157/?asof=20210111">Advanced Programming</a>)</li>
+<li>Remote Procedure Call (RPC) (<a href="https://columbia.github.io/ds1-class/">Distributed Systems</a>)</li>
+<li>Pipe (Advanced Programming)
+<ul>
+<li>anonymous pipe</li>
+<li>named pipe</li>
+</ul></li>
+</ul>
+                </div>
+            </div>
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+    </body>
+</html>
