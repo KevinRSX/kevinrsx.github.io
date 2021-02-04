@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>OS Concept Essentials 03 - Processes</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.4/css/uikit.gradient.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/diversen/pandoc-uikit/master/style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <!-- <script src="uikit.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/uikit.js"></script>
+        <!-- <script src="scripts.js"></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/scripts.js"></script>
+        <!-- <script src="jquery.sticky-kit.js "></script> -->
+        <script src="https://cdn.rawgit.com/diversen/pandoc-uikit/master/jquery.sticky-kit.js"></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                        <title>OS Concept Essentials 03 - Processes</title>
+        <style type="text/css">code{white-space: pre;}</style>
+                        <style type="text/css">
+            pre > code.sourceCode { white-space: pre; position: relative; }
+            pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+            pre > code.sourceCode > span:empty { height: 1.2em; }
+            code.sourceCode > span { color: inherit; text-decoration: inherit; }
+            div.sourceCode { margin: 1em 0; }
+            pre.sourceCode { margin: 0; }
+            @media screen {
+            div.sourceCode { overflow: auto; }
+            }
+            @media print {
+            pre > code.sourceCode { white-space: pre-wrap; }
+            pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+            }
+            pre.numberSource code
+              { counter-reset: source-line 0; }
+            pre.numberSource code > span
+              { position: relative; left: -4em; counter-increment: source-line; }
+            pre.numberSource code > span > a:first-child::before
+              { content: counter(source-line);
+                position: relative; left: -1em; text-align: right; vertical-align: baseline;
+                border: none; display: inline-block;
+                -webkit-touch-callout: none; -webkit-user-select: none;
+                -khtml-user-select: none; -moz-user-select: none;
+                -ms-user-select: none; user-select: none;
+                padding: 0 4px; width: 4em;
+                color: #aaaaaa;
+              }
+            pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+            div.sourceCode
+              {   }
+            @media screen {
+            pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+            }
+            code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+            code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+            code span.at { color: #7d9029; } /* Attribute */
+            code span.bn { color: #40a070; } /* BaseN */
+            code span.bu { } /* BuiltIn */
+            code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+            code span.ch { color: #4070a0; } /* Char */
+            code span.cn { color: #880000; } /* Constant */
+            code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+            code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+            code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+            code span.dt { color: #902000; } /* DataType */
+            code span.dv { color: #40a070; } /* DecVal */
+            code span.er { color: #ff0000; font-weight: bold; } /* Error */
+            code span.ex { } /* Extension */
+            code span.fl { color: #40a070; } /* Float */
+            code span.fu { color: #06287e; } /* Function */
+            code span.im { } /* Import */
+            code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+            code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+            code span.op { color: #666666; } /* Operator */
+            code span.ot { color: #007020; } /* Other */
+            code span.pp { color: #bc7a00; } /* Preprocessor */
+            code span.sc { color: #4070a0; } /* SpecialChar */
+            code span.ss { color: #bb6688; } /* SpecialString */
+            code span.st { color: #4070a0; } /* String */
+            code span.va { color: #19177c; } /* Variable */
+            code span.vs { color: #4070a0; } /* VerbatimString */
+            code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+        </style>
+                                                </head>
+
+    <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/KevinRSX">GitHub</a>
+      </li>
+      </ul>
+      </div>
+      </nav>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large">OS Concept Essentials 03 - Processes</h1>
+                                                        </div>
+            </div>
+
+            <div class="uk-grid" data-uk-grid-margin >
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul>
+                                                        <li><a href="#os-concepts-essentials-04---threads">OS Concepts Essentials 04 - Threads</a>
+                                                        <ul>
+                                                        <li><a href="#overview">Overview</a>
+                                                        <ul>
+                                                        <li><a href="#motivation">Motivation</a></li>
+                                                        <li><a href="#benefits">Benefits</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#multicore-programming">Multicore Programming</a>
+                                                        <ul>
+                                                        <li><a href="#programming-challenges">Programming Challenges</a></li>
+                                                        <li><a href="#types-of-parallelism">Types of Parallelism</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#multithreading-models">Multithreading Models</a></li>
+                                                        <li><a href="#thread-libraries">Thread Libraries</a></li>
+                                                        <li><a href="#implicit-threading">Implicit Threading</a></li>
+                                                        <li><a href="#threading-issues">Threading Issues</a>
+                                                        <ul>
+                                                        <li><a href="#semantic-problem-for-fork-and-exec">Semantic Problem for <code>fork()</code> and <code>exec()</code></a></li>
+                                                        <li><a href="#signal-handling">Signal Handling</a></li>
+                                                        <li><a href="#thread-cancellation">Thread Cancellation</a></li>
+                                                        <li><a href="#thread-local-storage">Thread-Local Storage</a></li>
+                                                        <li><a href="#scheduler-activations">Scheduler Activations</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#linux-example">Linux Example</a></li>
+                                                        </ul></li>
+                                                        </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<h1 id="os-concepts-essentials-04---threads">OS Concepts Essentials 04 - Threads</h1>
+<p><em>Date of creation: 2021-2-4</em></p>
+<p>Source:</p>
+<p><em><a href="http://os-book.com/">Operating System Concepts Essentials <strong>(2nd Edition)</strong></a></em>, Avi Silberschatz, Peter Galvin, and Greg Gagne, John Wiley and Sons, New York, NY, 2013, pp. 163-202.</p>
+<h2 id="overview">Overview</h2>
+<h3 id="motivation">Motivation</h3>
+<ul>
+<li>Similar tasks, shared information</li>
+<li>Need for message sharing intra- or inter-process</li>
+<li>Multiprocessing</li>
+</ul>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li>Responsiveness</li>
+<li>Resource sharing</li>
+<li>Economy</li>
+<li>Scalability</li>
+</ul></br>
+<h2 id="multicore-programming">Multicore Programming</h2>
+<h3 id="programming-challenges">Programming Challenges</h3>
+<ul>
+<li>Identifying tasks</li>
+<li>Balance</li>
+<li>Data splitting</li>
+<li>Data dependency</li>
+<li>Testing and debugging</li>
+</ul>
+<h3 id="types-of-parallelism">Types of Parallelism</h3>
+<ul>
+<li>Data parallelism</li>
+<li>Task parallelism</li>
+</ul></br>
+<h2 id="multithreading-models">Multithreading Models</h2>
+<p>Two levels: user threads/kernel threads</p>
+<ul>
+<li>Many-to-one</li>
+<li>One-to-one (Linux)</li>
+<li>Many-to-many/two-layer</li>
+</ul></br>
+<h2 id="thread-libraries">Thread Libraries</h2>
+<ul>
+<li>User space without kernel support</li>
+<li>Kernel-level library supported directly by operating system</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>POSIX Pthreads (UNIX/Linux)</li>
+<li>Windows (Windows)</li>
+<li>Java (JVM)
+<ul>
+<li>no global data, passed as parameter to thread class</li>
+</ul></li>
+</ul></br>
+<h2 id="implicit-threading">Implicit Threading</h2>
+<p><em>Only include thread pools here</em></p>
+<p>Motivation: easy to program</p>
+<p>Thread pool: create a number of threads at process startup and place them into a pool, where they sit and wait for work (179).</p>
+<p>Pros:</p>
+<ul>
+<li>Servicing a request with an existing thread is faster than waiting to create a thread</li>
+<li>A thread pool limits the number of thread that exist at one point</li>
+<li>Allows us to use different strategies for running the task. e.g., the task could be scheduled to execute after a time delay or to execute periodically</li>
+</ul></br>
+<h2 id="threading-issues">Threading Issues</h2></br>
+<h3 id="semantic-problem-for-fork-and-exec">Semantic Problem for <code>fork()</code> and <code>exec()</code></h3>
+<p>What data will be copied if <code>fork()</code> is called from a thread?</p>
+</br><h3 id="signal-handling">Signal Handling</h3>
+<p>Signal:</p>
+<ul>
+<li>generated by the occurence of a particular event</li>
+<li>delivered to a process</li>
+<li>must be handled (by user-defined routine or by default) once delivered</li>
+</ul>
+<p>Signals can be classified as:</p>
+<ul>
+<li>asynchronous: SIGINT</li>
+<li>synchronous: division by 0, illegal memory access</li>
+</ul>
+<p>Question: If a process has several threads, where should a signal be delivered? Some options:</p>
+<ul>
+<li>To the thread to which the signal applies</li>
+<li>To every thread in the process</li>
+<li>To certain threads in the process</li>
+<li>Assign a specific thread to receive all signals for the process</li>
+</ul>
+<p>Actual choice depends on the type of the signal generated:</p>
+<ul>
+<li>Synchronous: to the specific thread causing the signal</li>
+<li>Asynchronous: not clear, depends on specific signal</li>
+</ul>
+<p>UNIX way of delivering signal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>kill(pid_t pid, <span class="dt">int</span> signal);</span></code></pre></div>
+<p>Libraries allow a thread to sepcifiy which signals it will accept and which it will block. A signal is typically delivered only to the first thread found that is not blocking it.</p>
+</br><h3 id="thread-cancellation">Thread Cancellation</h3>
+<p>The thread to be cancalled is called target thread.</p>
+<ul>
+<li>Asynchronous: one thread immediately terminates the target thread</li>
+<li>Deferred: target thread periodically checks whether it should terminate</li>
+</ul>
+<p>Pthreads provides different cancellation modes. To do deferred cancellation, define cancellation point:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* do some work */</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* check if there is a cancellation request */</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  pthread_testcancel();</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="thread-local-storage">Thread-Local Storage</h3>
+<p>TLS is not equivalent to local variable, e.g., could separate in several functions.</p>
+<h3 id="scheduler-activations">Scheduler Activations</h3>
+<p>Deal with communication between the kernel and the thread library</p>
+<p>Place an intermediate data structure between user and kernel threads: lightweight process (LWPs)</p>
+<ul>
+<li>Virtual processoron which the application can schedule and run</li>
+<li>Each LWP is attached to a kernel thread</li>
+<li>An LWP is required for each concurrent blocking system call</li>
+</ul></br>
+<h2 id="linux-example">Linux Example</h2>
+<p>Dependent on the flags passed to <code>clone()</code></p>
+<ul>
+<li>Point to data or copy data (regardless of CoW)</li>
+</ul>
+                </div>
+            </div>
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+    </body>
+</html>
