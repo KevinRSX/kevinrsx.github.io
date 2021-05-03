@@ -25,18 +25,21 @@
         <meta name="generator" content="pandoc-uikit" />
                         <title>OS Concept Essentials 02 - Operating Systems Structures</title>
         <style type="text/css">code{white-space: pre;}</style>
-                                                        </head>
+                                                    	<style type="text/css">
+	body { font-family: Helvetica }
+	</style>
+    </head>
 
     <body>
-
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
       <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="/index.html">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="/about.html">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="https://github.com/KevinRSX">GitHub</a>
@@ -53,9 +56,9 @@
                     <h1 class="uk-heading-large">OS Concept Essentials 02 - Operating Systems Structures</h1>
                                                         </div>
             </div>
-
+            
             <div class="uk-grid" data-uk-grid-margin >
-                <div class="uk-width-medium-1-4">
+                <!--<div class="uk-width-medium-1-4">
                     <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
                         <div class="uk-panel uk-panel-box menu-begin" >
 
@@ -85,16 +88,16 @@
                                                         <li><a href="#system-boot">System Boot</a></li>
                                                         </ul></li>
                                                         </ul>
-
+                            
                         </div>
                     </div>
-                </div>
+		</div>-->
 
                 <div class="uk-width-medium-3-4">
-<h1 id="os-concepts-essentials-01---operating-system-structures">OS Concepts Essentials 02 - Operating System Structures</h1>
+<h1 id="os-concepts-essentials-01---operating-system-structures">OS Concepts Essentials 01 - Operating System Structures</h1>
 <p><em>Date of creation: 2021-1-14</em></p>
 <p>Source:</p>
-<p><em><a href="http://os-book.com/">Operating System Concepts Essentials <strong>(2nd Edition)</strong></a></em>, Avi Silberschatz, Peter Galvin, and Greg Gagne, John Wiley and Sons, New York, NY, 2013, pp. 55-102.</p>
+<p><em><a href="http://os-book.com/">Operating System Concepts Essentials <strong>(2nd Edition)</strong></a></em>, Avi Silberschatz, Peter Galvin, and Greg Gagne, John Wiley and Sons, New York, NY, 2013, pp. 3-54.</p>
 <h2 id="operating-system-services">Operating System Services</h2>
 <p>User’s perspective:</p>
 <ul>
@@ -120,7 +123,6 @@
 <li>Accounting</li>
 <li>Protection and security</li>
 </ul>
-</br>
 <h2 id="user-and-operating-system-interface">User and Operating System Interface</h2>
 <p>Command execution approaches for CLI:</p>
 <ul>
@@ -130,7 +132,6 @@
 <li>commands are used to identify files to be loaded into memory and executed</li>
 </ul></li>
 </ul>
-</br>
 <h2 id="system-calls">System Calls</h2>
 <p>System call: interface to the services made available by an operating system</p>
 <p>Example of read and write (62):</p>
@@ -144,7 +145,6 @@
 <li>pushed onto the stack and popped by OS</li>
 </ul></li>
 </ul>
-</br>
 <h2 id="types-of-system-calls">Types of System Calls</h2>
 <ul>
 <li>Process control</li>
@@ -154,7 +154,6 @@
 <li>Communications</li>
 <li>Protection</li>
 </ul>
-</br>
 <h2 id="system-programs">System Programs</h2>
 <p>Divided into:</p>
 <ul>
@@ -166,7 +165,6 @@
 <li>Communications</li>
 <li>Background services</li>
 </ul>
-</br>
 <h2 id="operating-system-design-and-implementation">Operating-System Design and Implementation</h2>
 <h3 id="design-goals">Design Goals</h3>
 <p>Basic: Hardware and system type</p>
@@ -184,7 +182,6 @@
 </ul>
 <h3 id="implementation">Implementation</h3>
 <p>Benefit of higher level languages: easy to port</p>
-</br>
 <h2 id="operating-system-structure">Operating-System Structure</h2>
 <h3 id="simple-structure">Simple Structure</h3>
 <p>MS-DOS - No well-defined structures:</p>
@@ -228,13 +225,10 @@
 <li>vs layered system: more flexible (any module can call any other module)</li>
 <li>vs microkernels: more efficient (do not require message exchanging)</li>
 </ul>
-</br>
 <h2 id="operating-system-debugging">Operating-System Debugging</h2>
 <p>Omitted</p>
-</br>
 <h2 id="operating-system-generation">Operating-System Generation</h2>
 <p>Omitted</p>
-</br>
 <h2 id="system-boot">System Boot</h2>
 <p>Bootstrap program/loader locates the kernel and loads it into main memory</p>
 <ul>

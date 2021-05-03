@@ -9,6 +9,7 @@
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.4/css/uikit.gradient.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <!-- <link rel="stylesheet" href="style.css"> -->
         <link rel="stylesheet" href="https://cdn.rawgit.com/diversen/pandoc-uikit/master/style.css">
@@ -28,7 +29,6 @@
             pre > code.sourceCode { white-space: pre; position: relative; }
             pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
             pre > code.sourceCode > span:empty { height: 1.2em; }
-            .sourceCode { overflow: visible; }
             code.sourceCode > span { color: inherit; text-decoration: inherit; }
             div.sourceCode { margin: 1em 0; }
             pre.sourceCode { margin: 0; }
@@ -89,26 +89,28 @@
             code span.vs { color: #4070a0; } /* VerbatimString */
             code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
         </style>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+                                            	<style type="text/css">
+	body { font-family: Helvetica }
+	</style>
     </head>
 
     <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <ul class="navbar-nav">
+      <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="/index.html">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="/about.html">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="https://github.com/KevinRSX">GitHub</a>
       </li>
-    </ul>
-  </div>
-</nav>
+      </ul>
+      </div>
+      </nav>
 
 
         <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
@@ -118,9 +120,9 @@
                     <h1 class="uk-heading-large">Quic on DASH</h1>
                                                         </div>
             </div>
-
+            
             <div class="uk-grid" data-uk-grid-margin >
-                <div class="uk-width-medium-1-4">
+                <!--<div class="uk-width-medium-1-4">
                     <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
                         <div class="uk-panel uk-panel-box menu-begin" >
 
@@ -144,10 +146,10 @@
                                                         <li><a href="#references">References</a></li>
                                                         </ul></li>
                                                         </ul>
-
+                            
                         </div>
                     </div>
-                </div>
+		</div>-->
 
                 <div class="uk-width-medium-3-4">
 <h1 id="quic-on-dash">QUIC on DASH</h1>
@@ -174,7 +176,7 @@
 <ol type="1">
 <li><p><a href="https://www.chromium.org/developers/how-tos/get-the-code">Checkout the chromium source</a></p></li>
 <li><p>Follow the steps in <a href="https://www.chromium.org/quic/playing-with-quic">playing with quic</a> to test whether your toy client and server work fine. Note that you should generate certificates after preparing test data. Since this is QUIC requires a root CA certificate, use the following command to trust the generated certificate. If you encounter any certificate problem, add <code>--disable_certificate_verification</code> flag on client side.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">certutil</span> <span class="at">-d</span> sql:<span class="va">$HOME</span>/.pki/nssdb <span class="at">-A</span> <span class="at">-t</span> <span class="st">&quot;C,,&quot;</span> <span class="at">-n</span> <span class="op">&lt;</span>certificate nickname<span class="op">&gt;</span> <span class="dt">\ </span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">certutil</span> -d sql:<span class="va">$HOME</span>/.pki/nssdb -A -t <span class="st">&quot;C,,&quot;</span> -n <span class="op">&lt;</span>certificate nickname<span class="op">&gt;</span> <span class="dt">\ </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-i</span> <span class="op">&lt;</span>certificate filename<span class="op">&gt;</span></span></code></pre></div></li>
 </ol>
 <h3 id="importance-of-having-correct-headers">Importance of Having Correct Headers</h3>
@@ -193,7 +195,7 @@ X-Cache: HIT
 X-Original-Url: https://www.example.org/
 Content-Length: 1256</code></pre>
 <p>We must add <code>X-Original-Url</code> to match with clients request:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./out/Debug/quic_client</span> <span class="at">--host</span><span class="op">=</span>127.0.0.1 <span class="at">--port</span><span class="op">=</span>6121 https://www.example.org/</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./out/Debug/quic_client</span> --host=127.0.0.1 --port=6121 https://www.example.org/</span></code></pre></div>
 <p>Server identifies this request, match the file that has <code>X-Original-Url</code> of the same name, and returns corresponding files.</p>
 <h3 id="generate-headers">Generate Headers</h3>
 <p>At this point, we know that all videos, <code>index.html</code>, <code>dash.js</code>, <code>manifest.mpd</code> and all video files should be associate with appropriate headers. We can arrange our folder to be served, say <code>www.quictest.com</code> like this:</p>
@@ -220,12 +222,12 @@ Content-Length: 1256</code></pre>
 <p>to <code>[other_hosts]</code> section in <code>net/tools/quic/certs/leaf.cnf</code>. To have a clearer look at how the server is running, use <code>--v=1</code> at server side to enable verbose.</p>
 <h2 id="clients-setup">Client’s Setup</h2>
 <p>Actually you only need to open google chrome to let client work. First close the current google chrome browser you are running, then</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">google-chrome-stable</span> <span class="dt">\</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--no-proxy-server</span> <span class="dt">\</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--enable-quic</span> <span class="dt">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--origin-to-force-quic-on</span><span class="op">=</span>www.quictest.com:443 <span class="dt">\</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--host-resolver-rules</span><span class="op">=</span><span class="st">&#39;MAP www.quictest.com:443 127.0.0.1:6121&#39;</span> <span class="dt">\</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  https://www.quictest.com</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">google-chrome-stable</span> <span class="kw">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--no-proxy-server</span> <span class="kw">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--enable-quic</span> <span class="kw">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--origin-to-force-quic-on</span>=www.quictest.com:443 <span class="kw">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">--host-resolver-rules</span>=<span class="st">&#39;MAP www.quictest.com:443 127.0.0.1:6121&#39;</span> <span class="kw">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">https</span>://www.quictest.com</span></code></pre></div>
 <p>Note that these flags map every request to <code>www.quictest.com:443</code> to your <code>quic_server</code>.</p>
 <h2 id="references">References</h2>
 <ul>
@@ -238,7 +240,6 @@ Content-Length: 1256</code></pre>
 </ul>
                 </div>
             </div>
-
             <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
         </div>
     </body>

@@ -26,7 +26,6 @@
                         <title>Linux System Calls</title>
         <style type="text/css">code{white-space: pre;}</style>
                         <style type="text/css">
-            body { font-family: Helvetica }
             pre > code.sourceCode { white-space: pre; position: relative; }
             pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
             pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -90,10 +89,13 @@
             code span.vs { color: #4070a0; } /* VerbatimString */
             code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
         </style>
-                                                </head>
+                                            	<style type="text/css">
+	body { font-family: Helvetica }
+	</style>
+    </head>
 
     <body>
-
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
       <ul class="navbar-nav">
@@ -118,9 +120,9 @@
                     <h1 class="uk-heading-large">Linux System Calls</h1>
                                                         </div>
             </div>
-
+            
             <div class="uk-grid" data-uk-grid-margin >
-                <div class="uk-width-medium-1-4">
+                <!--<div class="uk-width-medium-1-4">
                     <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
                         <div class="uk-panel uk-panel-box menu-begin" >
 
@@ -136,10 +138,10 @@
                                                         </ul></li>
                                                         </ul></li>
                                                         </ul>
-
+                            
                         </div>
                     </div>
-                </div>
+		</div>-->
 
                 <div class="uk-width-medium-3-4">
 <h1 id="linux-system-calls">Linux System Calls</h1>
@@ -150,7 +152,7 @@
 <li><p><em><a href="http://pearsonhighered.com/educator/product/Linux-Kernel-Development/9780672329463.page">Linux Kernel Development <strong>(3rd Edition)</strong></a></em>, Robert Love, Addison-Wesley Professional, New York, NY, 2010 (available from <a href="http://www.amazon.com/exec/obidos/ASIN/0672329468/departmeofcom-20">Amazon.com</a>). Also available <a href="http://www.staroceans.org/kernel-and-driver/Pearson.Education-Linux.Kernel.Development-A.thorough.guide.to.the.design.and.implementation.of.the.Linux.kernel.by.Robert.Love,%203rd.Edition_2010.pdf">online</a>.</p></li>
 </ul>
 <p>Attention: The kernel version in this article is 5.4, which is different from the one in <em>Linux Kernel Development</em> and the one that readers may use.</p>
-</br><h2 id="definition">Definition</h2>
+<h2 id="definition">Definition</h2>
 <p>Access point is a macro <code>SYSCALL_DEFINEx</code>. There are <a href="https://elixir.bootlin.com/linux/v5.4/source/include/linux/syscalls.h#L207">generic version</a> and <a href="https://elixir.bootlin.com/linux/v5.4/source/arch/x86/include/asm/syscall_wrapper.h#L184">hardware-specific version (x86)</a></p>
 <p>For example, the generic version of <code>getpid()</code> is defined like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>asmlinkage <span class="dt">long</span> sys_getpid(<span class="dt">void</span>);</span></code></pre></div>
@@ -158,7 +160,7 @@
 <li><code>asmlinkage</code>: required modifier that asks the compiler to look only on the stack for this function’s arguments (72)</li>
 <li><code>long</code>: for compatibility between 32- and 64-bit systems, returns <code>long</code> in kernel and <code>int</code> in user space</li>
 <li><code>sys_getpid</code>: naming convention - <code>sys_foo</code>, <code>sys_bar</code>.</li>
-</ul></br>
+</ul>
 <h2 id="x86_64-system-call-handler-example">X86_64 System Call Handler Example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fix_processor_context()-&gt;sycall_init() -&gt; entry_SYSCALL_64 -&gt; do_syscall_64()</span></code></pre></div>
 <p><code>do_syscall_64()</code> is defined in <code>/arch/x86/entry/common.c</code>. It uses the <code>sys_call_table</code> to invoke an actual system call</p>
@@ -184,9 +186,9 @@
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dt">syshdr-$(CONFIG_X86_64)     </span><span class="ch">+=</span><span class="st"> syscalls_64.h</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dt">syshdr-$(CONFIG_XEN)        </span><span class="ch">+=</span><span class="st"> xen-hypercalls.h</span></span></code></pre></div>
 <p><a href="https://blog.packagecloud.io/eng/2016/04/05/the-definitive-guide-to-linux-system-calls/#64-bit-fast-system-calls">Here</a> is a detailed explanation of 64-bit fast system calls, but note the kernel version is older.</p>
-</br><h2 id="implementation-of-a-system-call">Implementation of a System Call</h2>
+<h2 id="implementation-of-a-system-call">Implementation of a System Call</h2>
 <p>Before adding a system call, you should follow these <a href="https://www.kernel.org/doc/html/latest/process/adding-syscalls.html">principles</a> (unless you are doing a school assignment).</p>
-</br><h3 id="verifying-parameters">Verifying Parameters</h3>
+<h3 id="verifying-parameters">Verifying Parameters</h3>
 <p>Pointers may be malicious. Do the following checking:</p>
 <ul>
 <li>Pointer points to user space</li>
@@ -195,7 +197,7 @@
 </ul>
 <p>Use <code>copy_to_user()</code> and <code>copy_from_user()</code>. If they fail, return <code>-EFAULT</code></p>
 <p>Note: the LKD example (77) has some problems in defining <code>len</code>. Look at some actual code examples to see the usage of these two functions.</p>
-</br><h3 id="adding-a-generic-system-call-in-x86_64">Adding a Generic System Call in x86_64</h3>
+<h3 id="adding-a-generic-system-call-in-x86_64">Adding a Generic System Call in x86_64</h3>
 <p>Note: the title is not conflicting itself. A system call can be targeted at different architectures but only implemented in one of them.</p>
 <ul>
 <li>Add an entry in <code>arch/x86/entry/syscalls/sys_call_64.tbl</code></li>

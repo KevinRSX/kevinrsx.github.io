@@ -2,6 +2,8 @@
 title: 'About'
 ---
 
+
+
 All pages under [kevinrsx.github.io](https://kevinrsx.github.io) are created with
 
 - [pandoc](https://pandoc.org/)
@@ -15,7 +17,8 @@ Convert X (markdown, Latex, etc.) to html:
 pandoc /path/to/X -o /path/to/html --template=uikit.html --toc
 ```
 
+Conversion is often done recursively in a directory using the [global](/convert.sh) and [essential](/convert_essential.sh) conversion scripts.
+
 ***
 
-*Disclaimer: None of the posts is peer reviewed. For corrections, questions, and especially copyright issues, email `kx<twenty-one><fifty-four>@columbia.edu` (substitute `<X>` with Arabic numbers). Expect earliest response by the first working day thereafter.*
-
+*Disclaimer: None of the posts is peer reviewed. For corrections, questions, and especially copyright issues, email `kx<twenty-one><fifty-four>@columbia.edu` (substitute `<X>` with Arabic numbers).*
