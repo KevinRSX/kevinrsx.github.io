@@ -1,0 +1,22 @@
+body {
+    max-width: 50%;
+    margin: auto;
+}
+
+a:visited {
+    color: blue;
+}
+
+#kaiwen-xue:link, #kaiwen-xue:visited {
+    color: #9e3eb2;
+    text-decoration: none;
+}
+
+#portrait {
+    float: right;
+    zoom: 15%;
+}
+
+.wrap {
+    width: 70%;
+}
