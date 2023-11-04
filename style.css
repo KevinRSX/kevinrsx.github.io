@@ -1,10 +1,15 @@
 body {
     max-width: 50%;
     margin: auto;
+    text-align: justify;
 }
 
 a:visited {
     color: blue;
+}
+
+fieldset {
+    margin-bottom: 2%;
 }
 
 #kaiwen-xue:link, #kaiwen-xue:visited {
