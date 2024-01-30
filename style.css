@@ -1,7 +1,10 @@
 body {
     max-width: 50%;
     margin: auto;
-    /* text-align: justify; */
+}
+
+a:hover{
+    color: #008080;
 }
 
 a:visited {
@@ -18,8 +21,9 @@ fieldset {
 }
 
 #portrait {
-    float: right;
-    zoom: 15%;
+    float: left;
+    margin-right: 2%;
+    zoom: 9%;
 }
 
 .wrap {
