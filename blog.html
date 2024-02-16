@@ -1,0 +1,13 @@
+---
+layout: blog_default
+title: Blog
+---
+<h1><a href="/">Kevin Xue</a>'s Blog</h1>
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }} ({{ post.date | date_to_long_string: "ordinal", "US" }})</a>
+    </li>
+  {% endfor %}
+</ul>
