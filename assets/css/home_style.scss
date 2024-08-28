@@ -1,8 +1,12 @@
 ---
 ---
 body {
-    max-width: 50%;
+    max-width: 60%;
     margin: auto;
+}
+
+#meta {
+    margin-bottom: 10%;
 }
 
 a:hover{
@@ -17,15 +21,19 @@ fieldset {
     margin-bottom: 2%;
 }
 
-#kaiwen-xue:link, #kaiwen-xue:visited {
+#nogizaka-purple:link, #nogizaka-purple:visited {
     color: #9e3eb2;
     text-decoration: none;
 }
 
+#nogizaka-purple {
+    color: #9e3eb2;
+}
+
 #portrait {
-    float: left;
-    margin-right: 2%;
-    zoom: 9%;
+    float: right;
+    margin-left: 10%;
+    zoom: 6.5%;
 }
 
 .wrap {
